@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
+    <include file="com/company/importdata/screens.xml"/>
+    <screen id="importdata$Customer.edit"
+            template="com/company/importdata/web/ordermanagement/customer/customer-edit.xml"/>
+    <screen id="importdata$Customer.browse"
+            template="com/company/importdata/web/ordermanagement/customer/customer-browse.xml"/>
+    <screen id="importdata$Import.scenario.browse"
+            template="com/company/importdata/web/importer/importscenario/import-scenario-browse.xml"/>
+    <screen id="importdata$ImportScenario.edit"
+            template="com/company/importdata/web/importer/importscenario/import-scenario-edit.xml"/>
+    <screen id="importdata$ImportLog.browse"
+            template="com/company/importdata/web/importer/importlog/import-log-browse.xml"/>
+</screen-config>

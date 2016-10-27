@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.importdata.web.importer.importscenario.ImportScenarioBrowse"
+        focusComponent="importFilesTable"
+        lookupComponent="importFilesTable"
+        messagesPack="com.company.importdata.web.importer.importscenario">
+    <dsContext>
+        <collectionDatasource id="importFilesDs"
+                              class="com.company.importdata.entity.importer.ImportScenario"
+                              view="import-scenario-view">
+            <query>
+                <![CDATA[select e from importdata$ImportScenario e]]>
+            </query>
+            <collectionDatasource id="logDs"
+                                  property="log">
+                <groupDatasource id="recordsDs"
+                                 property="records"/>
+            </collectionDatasource>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true">
+        <vbox expand="importFilesTable"
+              height="100%"
+              margin="false,true,false,false"
+              spacing="true">
+            <filter id="filter"
+                    applyTo="importFilesTable"
+                    datasource="importFilesDs">
+                <properties include=".*"/>
+            </filter>
+            <table id="importFilesTable"
+                   width="100%">
+                <actions>
+                    <action id="create"/>
+                    <action id="edit"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="template"
+                            generator="generateTemplateCell"
+                            maxTextLength="20"/>
+                    <column id="comment"
+                            maxTextLength="30"/>
+                    <column id="importerBeanName"/>
+                </columns>
+                <rows datasource="importFilesDs"/>
+                <rowsCount/>
+                <buttonsPanel id="buttonsPanel"
+                              alwaysVisible="true">
+                    <button id="createBtn"
+                            action="importFilesTable.create"/>
+                    <button id="editBtn"
+                            action="importFilesTable.edit"/>
+                    <button id="removeBtn"
+                            action="importFilesTable.remove"/>
+                    <button id="btnImport"
+                            caption="msg://Import"
+                            icon="icons/wf-design-import.png"
+                            invoke="onBtnImportClick"/>
+                </buttonsPanel>
+            </table>
+        </vbox>
+    </layout>
+</window>

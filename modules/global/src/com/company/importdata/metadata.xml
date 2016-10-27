@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<metadata xmlns="http://schemas.haulmont.com/cuba/metadata.xsd">
+    <metadata-model namespace="importdata"
+                    root-package="com.company.importdata">
+        <class>com.company.importdata.entity.importer.Importer</class>
+    </metadata-model>
+</metadata>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.importdata.web.importer.importlog.ImportLogBrowse"
+        focusComponent="importLogsTable"
+        lookupComponent="importLogsTable"
+        messagesPack="com.company.importdata.web.importer.importlog">
+    <dsContext>
+        <groupDatasource id="importLogsDs"
+                         class="com.company.importdata.entity.importer.ImportLog"
+                         view="importLog-view">
+            <query>
+                <![CDATA[select e from importdata$ImportLog e]]>
+            </query>
+            <groupDatasource id="recordsDs"
+                             property="records"/>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true">
+        <split id="split"
+               height="100%"
+               orientation="horizontal"
+               pos="60"
+               width="100%">
+            <vbox expand="importLogsTable"
+                  height="100%"
+                  margin="false,true,false,false"
+                  spacing="true">
+                <filter id="filter"
+                        applyTo="importLogsTable"
+                        datasource="importLogsDs">
+                    <properties include=".*"/>
+                </filter>
+                <groupTable id="importLogsTable"
+                            width="100%">
+                    <columns>
+                        <column id="importScenario"/>
+                        <column id="file"
+                                generator="generateFileCell"/>
+                        <column id="started"/>
+                        <column id="finished"/>
+                        <column id="entitiesProcessed"/>
+                    </columns>
+                    <rows datasource="importLogsDs"/>
+                    <rowsCount/>
+                </groupTable>
+            </vbox>
+            <vbox expand="recordsTable"
+                  height="100%"
+                  margin="false,false,false,true"
+                  spacing="true">
+                <filter datasource="recordsDs"/>
+                <groupTable id="recordsTable"
+                            width="100%">
+                    <actions>
+                        <action id="excel"/>
+                    </actions>
+                    <columns>
+                        <column id="time"/>
+                        <column id="level"/>
+                        <column id="message"
+                                maxTextLength="50"/>
+                        <column id="stacktrace"
+                                maxTextLength="50"/>
+                    </columns>
+                    <rows datasource="recordsDs"/>
+                    <rowsCount/>
+                </groupTable>
+            </vbox>
+        </split>
+    </layout>
+</window>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+    <view class="com.company.importdata.entity.importer.ImportScenario"
+          extends="_local"
+          name="import-scenario-view">
+        <property name="template"
+                  view="browse"/>
+        <property name="log"
+                  view="_minimal">
+            <property name="records"
+                      view="_minimal">
+                <property name="time"/>
+                <property name="stacktrace"/>
+            </property>
+            <property name="file"
+                      view="browse"/>
+            <property name="entitiesProcessed"/>
+        </property>
+    </view>
+    <view class="com.company.importdata.entity.importer.ImportLog"
+          extends="_local"
+          name="importLog-view">
+        <property name="importScenario"
+                  view="_minimal"/>
+        <property name="file"
+                  view="browse"/>
+        <property name="records"
+                  view="_local"/>
+    </view>
+</views>
