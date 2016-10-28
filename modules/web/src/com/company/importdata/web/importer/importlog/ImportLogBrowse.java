@@ -1,11 +1,9 @@
 package com.company.importdata.web.importer.importlog;
 
-import com.haulmont.cuba.core.global.AppBeans;
-import com.haulmont.cuba.gui.components.AbstractAction;
-import com.haulmont.cuba.gui.components.AbstractLookup;
-import com.haulmont.cuba.gui.components.Button;
-import com.haulmont.cuba.gui.components.Component;
 import com.company.importdata.entity.importer.ImportLog;
+import com.haulmont.cuba.core.global.AppBeans;
+import com.haulmont.cuba.gui.WindowParam;
+import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.export.ExportDisplay;
 import com.haulmont.cuba.gui.xml.layout.ComponentsFactory;
 
@@ -15,6 +13,23 @@ public class ImportLogBrowse extends AbstractLookup {
 
     @Inject
     private ComponentsFactory componentsFactory;
+
+    @Inject
+    private GroupTable<ImportLog> importLogsTable;
+
+    @WindowParam(name = "selectLogItem")
+    private ImportLog selectLogItem;
+
+    @Override
+    public void ready() {
+        super.ready();
+
+        if (selectLogItem != null) {
+            importLogsTable.sortBy(importLogsTable.getDatasource().getMetaClass().getPropertyPath("started"), false);
+            importLogsTable.expandPath(selectLogItem);
+            importLogsTable.setSelected(selectLogItem);
+        }
+    }
 
     public Component generateFileCell(ImportLog entity) {
         if (entity.getFile() != null) {

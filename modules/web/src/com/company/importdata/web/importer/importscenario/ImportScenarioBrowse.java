@@ -2,11 +2,14 @@ package com.company.importdata.web.importer.importscenario;
 
 import com.company.importdata.entity.importer.ImportLog;
 import com.company.importdata.entity.importer.ImportScenario;
+import com.company.importdata.entity.importer.LogRecordLevel;
 import com.company.importdata.service.importer.ImporterService;
 import com.haulmont.bali.util.ParamsMap;
-import com.haulmont.cuba.core.app.DataService;
 import com.haulmont.cuba.core.entity.FileDescriptor;
-import com.haulmont.cuba.core.global.*;
+import com.haulmont.cuba.core.global.AppBeans;
+import com.haulmont.cuba.core.global.DataManager;
+import com.haulmont.cuba.core.global.FileStorageException;
+import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.gui.WindowManager;
 import com.haulmont.cuba.gui.app.core.file.FileUploadDialog;
 import com.haulmont.cuba.gui.components.*;
@@ -72,17 +75,45 @@ public class ImportScenarioBrowse extends AbstractLookup {
                             log = dataManager.commit(log);
                             log = importerService.doImport(log, null, true);
 
+                            showCompletionMessage(log);
+
                         } catch (FileStorageException e) {
                             Log log = LogFactory.getLog(this.getClass());
                             log.error("File upload has failed", e);
                             showNotification("File upload has failed", NotificationType.ERROR);
-                        } finally {
-                            importFilesDs.refresh();
-                            showNotification("Import has been finished. Check import log too see if problems have been encountered"
-                                    , NotificationType.HUMANIZED);
                         }
                     }
                 });
+    }
+
+    private void showCompletionMessage(ImportLog log) {
+        long errorCount = log.getRecords().stream().filter(r -> r.getLevel().equals(LogRecordLevel.ERROR)).count();
+        long warnCount = log.getRecords().stream().filter(r -> r.getLevel().equals(LogRecordLevel.WARN)).count();
+
+        if ((errorCount + warnCount) == 0) {
+            showOptionDialog("Import Result"
+                    ,"<font color=\"green\">Import has been successfully finished with no warnings/errors</font>"
+                    ,MessageType.CONFIRMATION_HTML
+                    ,new Action[] {
+                            new DialogAction(DialogAction.Type.OK, true)
+                    });
+        } else {
+            showOptionDialog("Import Result"
+                    ,String.format("<font color=\"red\">Import has been finished with %s ERRORS and %s WARNINGS</br>" +
+                            "Click OK to see import log</font>", errorCount, warnCount)
+                    ,MessageType.WARNING_HTML
+                    ,new Action[] {
+                            new DialogAction(DialogAction.Type.OK, true) {
+                                @Override
+                                public void actionPerform(Component component) {
+                                    super.actionPerform(component);
+                                    openWindow("importdata$ImportLog.browse", WindowManager.OpenType.NEW_TAB,
+                                            ParamsMap.of("selectLogItem", log));
+                                }
+                            }
+                            ,new DialogAction(DialogAction.Type.CANCEL)
+                    });
+        }
     }
 
     public Component generateTemplateCell(ImportScenario entity) {
@@ -106,4 +137,5 @@ public class ImportScenarioBrowse extends AbstractLookup {
 
         return null;
     }
+
 }
