@@ -1,4 +1,8 @@
-package com.company.importdata.entity.ordermanagement;
+/*
+ * TODO Copyright
+ */
+
+package com.company.importdata.entity.ordermanagment;
 
 import com.haulmont.chile.core.datatypes.impl.EnumClass;
 

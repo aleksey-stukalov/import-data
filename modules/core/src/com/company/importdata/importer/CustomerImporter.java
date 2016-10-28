@@ -5,7 +5,7 @@
 package com.company.importdata.importer;
 
 import com.company.importdata.entity.ordermanagment.Customer;
-import com.company.importdata.entity.ordermanagement.CustomerPriority;
+import com.company.importdata.entity.ordermanagment.CustomerPriority;
 import com.company.importdata.importer.exception.ImportFileEofEvaluationException;
 import com.company.importdata.importer.utils.DbHelper;
 import com.company.importdata.importer.utils.xls.XlsHelper;
@@ -21,7 +21,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by aleksey on 18/10/2016.

@@ -1,12 +1,12 @@
 package com.company.importdata.entity.ordermanagment;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import com.haulmont.cuba.core.entity.StandardEntity;
-import javax.persistence.Lob;
 import com.haulmont.chile.core.annotations.NamePattern;
-import com.company.importdata.entity.ordermanagement.CustomerPriority;
+import com.haulmont.cuba.core.entity.StandardEntity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 
 @NamePattern("%s %s|firstName,secondName")
 @Table(name = "IMPORTDATA_CUSTOMER")
