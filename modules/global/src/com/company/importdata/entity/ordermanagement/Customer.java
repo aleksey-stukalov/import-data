@@ -1,4 +1,8 @@
-package com.company.importdata.entity.ordermanagment;
+/*
+ * TODO Copyright
+ */
+
+package com.company.importdata.entity.ordermanagement;
 
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;

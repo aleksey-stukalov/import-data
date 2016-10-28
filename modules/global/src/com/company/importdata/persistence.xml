@@ -3,7 +3,7 @@
              version="2.0">
     <persistence-unit name="import-data"
                       transaction-type="RESOURCE_LOCAL">
-        <class>com.company.importdata.entity.ordermanagment.Customer</class>
+        <class>com.company.importdata.entity.ordermanagement.Customer</class>
         <class>com.company.importdata.entity.importer.ImportScenario</class>
         <class>com.company.importdata.entity.importer.ImportLogRecord</class>
         <class>com.company.importdata.entity.importer.ImportLog</class>

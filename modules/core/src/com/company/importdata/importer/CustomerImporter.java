@@ -4,8 +4,8 @@
 
 package com.company.importdata.importer;
 
-import com.company.importdata.entity.ordermanagment.Customer;
-import com.company.importdata.entity.ordermanagment.CustomerPriority;
+import com.company.importdata.entity.ordermanagement.Customer;
+import com.company.importdata.entity.ordermanagement.CustomerPriority;
 import com.company.importdata.importer.exception.ImportFileEofEvaluationException;
 import com.company.importdata.importer.utils.DbHelper;
 import com.company.importdata.importer.utils.xls.XlsHelper;

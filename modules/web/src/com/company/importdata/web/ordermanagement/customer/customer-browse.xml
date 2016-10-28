@@ -7,7 +7,7 @@
         messagesPack="com.company.importdata.web.ordermanagement.customer">
     <dsContext>
         <collectionDatasource id="customersDs"
-                              class="com.company.importdata.entity.ordermanagment.Customer"
+                              class="com.company.importdata.entity.ordermanagement.Customer"
                               view="_local">
             <query>
                 <![CDATA[select e from importdata$Customer e]]>

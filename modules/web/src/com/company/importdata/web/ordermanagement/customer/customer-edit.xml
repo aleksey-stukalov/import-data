@@ -7,7 +7,7 @@
         messagesPack="com.company.importdata.web.ordermanagement.customer">
     <dsContext>
         <datasource id="customerDs"
-                    class="com.company.importdata.entity.ordermanagment.Customer"
+                    class="com.company.importdata.entity.ordermanagement.Customer"
                     view="_local"/>
     </dsContext>
     <dialogMode height="600"
