@@ -4,6 +4,7 @@ import com.company.importdata.entity.importer.ImportLog;
 import com.company.importdata.entity.importer.ImportScenario;
 import com.company.importdata.entity.importer.LogRecordLevel;
 import com.company.importdata.service.importer.ImporterService;
+import com.company.importdata.web.importer.fileuploaddialog.ExtFileUploadDialog;
 import com.haulmont.bali.util.ParamsMap;
 import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.core.global.AppBeans;
@@ -11,7 +12,6 @@ import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.FileStorageException;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.gui.WindowManager;
-import com.haulmont.cuba.gui.app.core.file.FileUploadDialog;
 import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.config.WindowConfig;
 import com.haulmont.cuba.gui.data.CollectionDatasource;
@@ -56,7 +56,7 @@ public class ImportScenarioBrowse extends AbstractLookup {
     public void onBtnImportClick() {
         WindowConfig windowConfig = AppBeans.get(WindowConfig.NAME);
 
-        final FileUploadDialog dialog = (FileUploadDialog) App.getInstance().getWindowManager().
+        final ExtFileUploadDialog dialog = (ExtFileUploadDialog) App.getInstance().getWindowManager().
                 openWindow(windowConfig.getWindowInfo("fileUploadDialog"), WindowManager.OpenType.DIALOG);
 
         final ImportScenario scenario = importFilesDs.getItem();
@@ -72,6 +72,8 @@ public class ImportScenarioBrowse extends AbstractLookup {
                             ImportLog log = metadata.create(ImportLog.class);
                             log.setImportScenario(scenario);
                             log.setFile(descriptor);
+                            log.setComment(dialog.getComment());
+
                             log = dataManager.commit(log);
                             log = importerService.doImport(log, null, true);
 

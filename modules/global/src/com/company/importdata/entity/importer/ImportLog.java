@@ -1,19 +1,12 @@
 package com.company.importdata.entity.importer;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.cuba.core.entity.FileDescriptor;
+import com.haulmont.cuba.core.entity.StandardEntity;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import com.haulmont.cuba.core.entity.StandardEntity;
-import com.haulmont.chile.core.annotations.NamePattern;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import com.haulmont.cuba.core.entity.FileDescriptor;
 
 @NamePattern("%s - %s|started,finished")
 @Table(name = "IMPORTDATA_IMPORT_LOG")
@@ -42,6 +35,19 @@ public class ImportLog extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IMPORT_SCENARIO_ID")
     protected ImportScenario importScenario;
+
+    @Lob
+    @Column(name = "COMMENT_")
+    protected String comment;
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
 
     public void setFile(FileDescriptor file) {
         this.file = file;

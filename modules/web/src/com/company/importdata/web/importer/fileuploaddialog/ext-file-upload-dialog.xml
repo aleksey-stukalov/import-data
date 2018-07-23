@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.importdata.web.importer.fileuploaddialog.ExtFileUploadDialog"
+        extends="/com/haulmont/cuba/gui/app/core/file/file-upload-dialog.xml"
+        messagesPack="com.company.importdata.web.importer.fileuploaddialog"
+        xmlns:ext="http://schemas.haulmont.com/cuba/window-ext.xsd">
+    <layout>
+        <vbox>
+            <textArea id="comments"
+                      caption="msg://comment"
+                      ext:index="0"
+                      width="100%"/>
+        </vbox>
+    </layout>
+</window>

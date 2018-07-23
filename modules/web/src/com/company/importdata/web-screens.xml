@@ -11,4 +11,6 @@
             template="com/company/importdata/web/importer/importscenario/import-scenario-edit.xml"/>
     <screen id="importdata$ImportLog.browse"
             template="com/company/importdata/web/importer/importlog/import-log-browse.xml"/>
+    <screen id="fileUploadDialog"
+            template="com/company/importdata/web/importer/fileuploaddialog/ext-file-upload-dialog.xml"/>
 </screen-config>

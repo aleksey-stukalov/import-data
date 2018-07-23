@@ -1,6 +1,6 @@
 
 buildscript {
-    ext.cubaVersion = '6.8.1'
+    ext.cubaVersion = '6.9.3'
     repositories {
         maven {
             url 'https://repo.cuba-platform.com/content/groups/work'
@@ -23,7 +23,7 @@ def coreModule = project(':app-core')
 def guiModule = project(':app-gui')
 def webModule = project(':app-web')
 
-def servletApi = 'org.apache.tomcat:tomcat-servlet-api:8.0.26'
+def servletApi = 'javax.servlet:javax.servlet-api:3.1.0'
 
 
 apply(plugin: 'idea')
@@ -88,7 +88,7 @@ configure(coreModule) {
         provided(servletApi)
         jdbc(hsql)
         testRuntime(hsql)
-        compile('org.apache.poi:poi-ooxml:3.12') {
+        compile('org.apache.poi:poi-ooxml:3.17') {
             exclude group: "org.apache.poi", module: "poi"
         }
 

@@ -41,6 +41,8 @@
                                 generator="generateFileCell"/>
                         <column id="started"/>
                         <column id="finished"/>
+                        <column id="comment"
+                                maxTextLength="50"/>
                         <column id="entitiesProcessed"/>
                     </columns>
                     <rows datasource="importLogsDs"/>

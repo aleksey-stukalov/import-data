@@ -35,6 +35,7 @@ create table IMPORTDATA_IMPORT_LOG (
     FINISHED timestamp,
     ENTITIES_PROCESSED integer,
     IMPORT_SCENARIO_ID varchar(36),
+    COMMENT_ longvarchar,
     --
     primary key (ID)
 )^
